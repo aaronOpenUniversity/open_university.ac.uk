@@ -1,0 +1,104 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 ArialMT;\f1\fnil\fcharset0 Monaco;}
+{\colortbl;\red255\green255\blue255;\red38\green38\blue38;\red210\green0\blue53;\red245\green245\blue247;
+}
+\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\deftab720
+\pard\pardeftab720\sl320\sa140\partightenfactor0
+
+\f0\fs28 \cf2 \expnd0\expndtw0\kerning0
+A lottery company sells scratch cards.\'a0 In addition to the game itself, each contains a verification code.\'a0 When a user wishes to claim a win, they enter the value they are claiming and the verification code into a computer system.\'a0 The system uses a secret key to determine the validity of the claim.\'a0\
+You are to write the verification method that will be passed the data entered by the claimant together with the secret key.\
+The verification method\'a0
+\f1\fs24 \cf3 \cb4 verifyWin
+\f0\fs28 \cf2 \cb1 \'a0takes three arguments, the\'a0
+\f1\fs24 \cf3 \cb4 claimValue
+\f0\fs28 \cf2 \cb1 \'a0in pounds as an\'a0
+\f1\fs24 \cf3 \cb4 int
+\f0\fs28 \cf2 \cb1 , \'a0the\'a0
+\f1\fs24 \cf3 \cb4 verificationCode
+\f0\fs28 \cf2 \cb1 \'a0from the card as a\'a0
+\f1\fs24 \cf3 \cb4 String
+\f0\fs28 \cf2 \cb1 \'a0and the\'a0
+\f1\fs24 \cf3 \cb4 secretKey
+\f0\fs28 \cf2 \cb1 \'a0as a\'a0
+\f1\fs24 \cf3 \cb4 String
+\f0\fs28 \cf2 \cb1 .\'a0 The prizes available are \'a31, \'a33 and \'a35.\'a0 It returns a\'a0
+\f1\fs24 \cf3 \cb4 Boolean
+\f0\fs28 \cf2 \cb1 \'a0value,\'a0
+\f1\fs24 \cf3 \cb4 true
+\f0\fs28 \cf2 \cb1 \'a0if the claim is valid,\'a0
+\f1\fs24 \cf3 \cb4 false
+\f0\fs28 \cf2 \cb1 \'a0if not.\
+\'a0\
+To determine whether a\'a0
+\f1\fs24 \cf3 \cb4 verificationCode
+\f0\fs28 \cf2 \cb1 \'a0is valid, it is compared to the\'a0
+\f1\fs24 \cf3 \cb4 secretKey
+\f0\fs28 \cf2 \cb1 \'a0character by character.\'a0\
+A local variable\'a0
+\f1\fs24 \cf3 \cb4 prize
+\f0\fs28 \cf2 \cb1 \'a0(which you must create) is initially set to\'a0
+\f1\fs24 \cf3 \cb4 0
+\f0\fs28 \cf2 \cb1 \'a0and will represent the prize value in the\'a0
+\f1\fs24 \cf3 \cb4 verificationCode
+\f0\fs28 \cf2 \cb1 \'a0once the processing has completed.\
+Next an appropriate loop is entered to compare the characters in the\'a0
+\f1\fs24 \cf3 \cb4 verificationCode
+\f0\fs28 \cf2 \cb1 \'a0and the\'a0
+\f1\fs24 \cf3 \cb4 secretKey
+\f0\fs28 \cf2 \cb1 , one at a time in the order left to right.\'a0\
+Each time the code in the body of the loop executes, it examines the next pair of characters.\'a0 If the characters at the current position match, the numerical\'a0
+\i position
+\i0 \'a0of the match is added to the\'a0
+\f1\fs24 \cf3 \cb4 prize
+\f0\fs28 \cf2 \cb1 .\'a0 If they do not match, the numerical\'a0
+\i position
+\i0 \'a0is subtracted. We take the\'a0
+\i position\'a0
+\i0 to start from 1, whereas Strings are indexed from 0.\
+\'a0\
+When all of the characters have been compared the value in\'a0
+\f1\fs24 \cf3 \cb4 prize
+\f0\fs28 \cf2 \cb1 \'a0contains the value of a valid claim for this card.\'a0 It is compared to the\'a0
+\f1\fs24 \cf3 \cb4 claimValue
+\f0\fs28 \cf2 \cb1 \'a0to determine if the claim is valid. \'a0If they match, return\'a0
+\f1\fs24 \cf3 \cb4 true
+\f0\fs28 \cf2 \cb1 .\'a0 If not return\'a0
+\f1\fs24 \cf3 \cb4 false
+\f0\fs28 \cf2 \cb1 .\
+\'a0\
+Both keys are always expected to be exactly 6 characters long and if they are longer, any characters beyond the first six are to be ignored.\
+You will need the\'a0
+\f1\fs24 \cf3 \cb4 charAt()
+\f0\fs28 \cf2 \cb1 \'a0method to access the correct character.\
+You should assume that the inputs are always valid.\
+\'a0\
+Note:- Unless you are extremely confident, you are advised to write your code in BlueJ and copy the final working version in here to test.\'a0\
+Although you can edit your code here, this is not a development environment and If your code contains syntax errors you may get unhelpful error messages here.\
+\
+		public Boolean verifyWin(int claimValue, String verificationCode, String secretKey) \
+	\{\
+	     //create and initialise your local variable prize here\
+		 \
+		 int prize = 0;		\
+		 \
+		 boolean result = true;\
+			 \
+			 for(int i = 1; i <= 6; i++) \{\
+				 if (secretKey.charAt(i) == verificationCode.charAt(i)) \{\
+					 result = true;\
+				 \}	else \{\
+					 result = false;\
+			 \}\
+			 \
+			 if(result == true) \{\
+			     prize = claimValue + (i + 1);\
+			 \} else if (result == false) \{\
+			     prize = claimValue - (i - 1);\
+			 \}\
+			 return result;\
+			 \
+			\}\
+			 return (prize == claimValue);\
+\}}
